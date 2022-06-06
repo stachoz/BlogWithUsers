@@ -1,12 +1,9 @@
-from distutils.errors import CompileError
-import re
 from flask import Flask, render_template, redirect, url_for, flash 
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
-from datetime import date
+from datetime import date, datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import ForeignKey
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from forms import *
 from functools import wraps
@@ -224,6 +221,10 @@ def delete_post(post_id):
     db.session.commit()
     return redirect(url_for('get_all_posts'))
 
+
+@app.context_processor
+def inject_row():
+    return {'now': datetime.utcnow()}
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000, debug=True)
