@@ -11,7 +11,7 @@ from flask import abort
 from flask_migrate import Migrate
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = YOUR_SECRET_KEY
 ckeditor = CKEditor(app)
 Bootstrap(app)
 
